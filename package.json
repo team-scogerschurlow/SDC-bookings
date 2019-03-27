@@ -15,5 +15,20 @@
   "bugs": {
     "url": "https://github.com/ghrsea-bowsers-castle/rotto/issues"
   },
-  "homepage": "https://github.com/ghrsea-bowsers-castle/rotto#readme"
+  "homepage": "https://github.com/ghrsea-bowsers-castle/rotto#readme",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mysql": "^2.14.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
 }
