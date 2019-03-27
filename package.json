@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "react-compile": "webpack -d --watch",
+    "server": "nodemon server/app.js"
   },
   "repository": {
     "type": "git",
@@ -26,8 +27,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.17.2",
-    "express": "^4.15.4",
+    "express": "^4.16.4",
     "mysql": "^2.14.1",
+    "path": "^0.12.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   }
