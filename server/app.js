@@ -4,7 +4,7 @@ const app = express();
 
 const PORT = 3000;
 
-app.use(express.static(__dirname+'/../components/public'));
+app.use(express.static(__dirname+'/../client/public'));
 
 
 

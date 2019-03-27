@@ -6,7 +6,8 @@ CREATE TABLE rental_price_info IF NOT EXISTS (
     id  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     guest_limit INT NOT NULL DEFAULT 2,
     service_fee INT NOT NULL DEFAULT 10,
-    taxes INT NOT NULL DEFAULT 5
+    taxes INT NOT NULL DEFAULT 5,
+    rating INT NOT NULL DEFAULT 3
 );
 
 CREATE TABLE rental_availability IF NOT EXISTS (
