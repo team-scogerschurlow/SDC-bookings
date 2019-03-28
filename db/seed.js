@@ -1,7 +1,7 @@
-const faker = require('faker');
+var mysql = require('mysql');
 
 function guestLimitGenerator () {
-    return Math.floor(Math.random()*20);
+    return Math.floor(Math.random() * (20 - 2) + 2);
 }
 
 function serviceFeeGenerator () {
@@ -9,11 +9,11 @@ function serviceFeeGenerator () {
 }
 
 function taxesGenerator () {
-    return parseFloat((Math.random()*.3).toFixed(2));
+    return parseFloat((Math.random()*30).toFixed(2));
 }
 
 function ratingGenerator () {
-    return Math.floor(Math.random() * 6);
+    return Math.floor(Math.random()*(5 - 3) + 3);
 }
 
 function generatePrice () {
@@ -25,8 +25,6 @@ function generateAvailability () {
 }
 
 const dayIncrement = 86400000;
-
-
 
 function multipleRentalPriceInfoGenerator (x) {
     const rentalsPriceInfo = [];
@@ -71,10 +69,35 @@ function rentalsAvailabilityGenerator (rentals, x) {
     return rentalsAvailability;
 }
 
-const rentalInfoTable = multipleRentalPriceInfoGenerator(2);
+const tenRentals = multipleRentalPriceInfoGenerator(10);
 
-const availableTable = rentalsAvailabilityGenerator(rentalInfoTable, 2);
-console.log(availableTable);
 
+const connection = mysql.createConnection({
+    user: "root",
+    database: "bookings"
+})
+
+// console.log(tenRentals);
+
+
+connection.connect((err)=>{
+    if (err) {
+        console.log(err);
+    }
+    console.log("Connected to MySQL DB");
+})
+
+tenRentals.forEach((rental)=>{
+    connection.query(
+        `INSERT INTO rental_price_info 
+        (guest_limit, service_fee, taxes, rating) 
+        VALUES 
+        (${rental.guest_limit}, ${rental.service_fee}, 
+        ${rental.taxes}, ${rental.rating});`
+    );
+})
+
+
+connection.end();
 
 
