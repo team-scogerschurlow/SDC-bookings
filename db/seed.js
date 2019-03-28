@@ -13,7 +13,7 @@ function taxesGenerator () {
 }
 
 function ratingGenerator () {
-    return Math.floor(Math.random()*(5 - 3) + 3);
+    return Math.floor(Math.random()*(6 - 3) + 3);
 }
 
 function generatePrice () {
@@ -31,7 +31,7 @@ function multipleRentalPriceInfoGenerator (x) {
 
     for (var i = 0; i < x; i++) {
         const tempObj = {
-            id: i,
+            id: i+100,
             guest_limit: guestLimitGenerator(),
             service_fee: serviceFeeGenerator(),
             taxes: taxesGenerator(),
@@ -49,13 +49,13 @@ function multipleRentalPriceInfoGenerator (x) {
 function rentalsAvailabilityGenerator (rentals, x) {
     const rentalsAvailability = [];
     const refDate = Date.now();
-    let contextCounter = 0;
+    let contextCounter = 100;
     rentals.forEach((rental)=> {
     
        for (var i = 0; i < x; i++) {
            const tempObj = {
                id: contextCounter,
-               date: new Date(refDate + dayIncrement*i),
+               date: new Date(refDate + dayIncrement*i).toISOString().slice(0, 10),
                price: generatePrice(),
                available: generateAvailability(),
                views: generatePrice(),
@@ -69,7 +69,9 @@ function rentalsAvailabilityGenerator (rentals, x) {
     return rentalsAvailability;
 }
 
-const tenRentals = multipleRentalPriceInfoGenerator(10);
+const hundredRentals = multipleRentalPriceInfoGenerator(100);
+
+const thirtyDaysOfRentals = rentalsAvailabilityGenerator(hundredRentals, 30);
 
 
 const connection = mysql.createConnection({
@@ -87,16 +89,40 @@ connection.connect((err)=>{
     console.log("Connected to MySQL DB");
 })
 
-tenRentals.forEach((rental)=>{
+hundredRentals.forEach((rental)=>{
     connection.query(
         `INSERT INTO rental_price_info 
-        (guest_limit, service_fee, taxes, rating) 
+        (id, guest_limit, service_fee, taxes, rating) 
         VALUES 
-        (${rental.guest_limit}, ${rental.service_fee}, 
+        (${rental.id}, ${rental.guest_limit}, ${rental.service_fee}, 
         ${rental.taxes}, ${rental.rating});`
     );
 })
 
+
+thirtyDaysOfRentals.forEach((rentalDay) => {
+    connection.query(
+        `INSERT INTO 
+        rental_availability
+        (
+            id, 
+            date, 
+            price, 
+            available, 
+            views, 
+            rental_id
+        )
+        VALUES
+        (
+            ${rentalDay.id}, 
+            ${rentalDay.date}, 
+            ${rentalDay.price}, 
+            ${rentalDay.available}, 
+            ${rentalDay.views}, 
+            ${rentalDay.rental_id} 
+        );`
+    )
+})
 
 connection.end();
 
