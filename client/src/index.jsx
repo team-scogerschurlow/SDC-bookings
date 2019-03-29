@@ -42,14 +42,11 @@ class Booking extends React.Component {
     }
 
     getAvailabilityDataForId(id) {
-
-        axios.get(`getavailabilitydata/${id}`)
+        axios.get(`/getavailabilitydata/${id}`)
         .then((results)=> {
-            // this.setState({
-            //     availability: results.data
-            // })
-
-            console.log(results);
+            this.setState({
+                availability: results.data
+            })
         })
         .catch((err)=>{
             console.log(`error getting availability on client`, err);
@@ -62,7 +59,8 @@ class Booking extends React.Component {
     render() {
         return (
             <div>
-                <Price rating={this.state.currentRental.rating} />
+                <Price rating={this.state.currentRental.rating} 
+                    data={this.state.availability[0]} />
             </div>
         );
     }

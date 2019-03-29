@@ -44,7 +44,6 @@ app.get('/getrentaldata/:id', (req, res) => {
 
 
 app.get('/getavailabilitydata/:id', (req, res) => {
-
     connection.query(
         `SELECT * FROM rental_availability WHERE rental_id=${req.params.id}`,
         (err, results, fields) => {
