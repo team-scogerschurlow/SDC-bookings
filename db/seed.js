@@ -88,48 +88,48 @@ const connection = mysql.createConnection({
 // console.log(tenRentals);
 
 
-// connection.connect((err)=>{
-//     if (err) {
-//         console.log(err);
-//     }
-//     console.log("Connected to MySQL DB");
-// })
+connection.connect((err)=>{
+    if (err) {
+        console.log(err);
+    }
+    console.log("Connected to MySQL DB");
+})
 
-// hundredRentals.forEach((rental)=>{
-//     connection.query(
-//         `INSERT INTO rental_price_info 
-//         (id, guest_limit, service_fee, taxes, rating) 
-//         VALUES 
-//         (${rental.id}, ${rental.guest_limit}, ${rental.service_fee}, 
-//         ${rental.taxes}, ${rental.rating});`
-//     );
-// })
+hundredRentals.forEach((rental)=>{
+    connection.query(
+        `INSERT INTO rental_price_info 
+        (id, guest_limit, service_fee, taxes, rating) 
+        VALUES 
+        (${rental.id}, ${rental.guest_limit}, ${rental.service_fee}, 
+        ${rental.taxes}, ${rental.rating});`
+    );
+})
 
 
-// thirtyDaysOfRentals.forEach((rentalDay) => {
-//     connection.query(
-//         `INSERT INTO 
-//         rental_availability
-//         (
-//             id, 
-//             rental_date, 
-//             price, 
-//             available, 
-//             views, 
-//             rental_id
-//         )
-//         VALUES
-//         (
-//             ${rentalDay.id}, 
-//             ${rentalDay.rental_date}, 
-//             ${rentalDay.price}, 
-//             ${rentalDay.available}, 
-//             ${rentalDay.views}, 
-//             ${rentalDay.rental_id} 
-//         );`
-//     )
-// })
+thirtyDaysOfRentals.forEach((rentalDay) => {
+    connection.query(
+        `INSERT INTO 
+        rental_availability
+        (
+            id, 
+            rental_date, 
+            price, 
+            available, 
+            views, 
+            rental_id
+        )
+        VALUES
+        (
+            ${rentalDay.id}, 
+            ${rentalDay.rental_date}, 
+            ${rentalDay.price}, 
+            ${rentalDay.available}, 
+            ${rentalDay.views}, 
+            ${rentalDay.rental_id} 
+        );`
+    )
+})
 
-// connection.end();
+connection.end();
 
 
