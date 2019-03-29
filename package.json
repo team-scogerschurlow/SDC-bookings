@@ -6,7 +6,7 @@
   "scripts": {
     "react-compile": "webpack -d --watch",
     "server": "nodemon server/app.js",
-    "seed" : "node db/seed.js"
+    "seed": "node db/seed.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mysql": "^2.14.1",
     "path": "^0.12.7",

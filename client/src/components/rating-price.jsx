@@ -1,10 +1,11 @@
 import React from "react";
 
 
-const Price = props => (
+const Price = (props) => (
   <div>
-    <p>126 a night</p>
+    <p>$100 a night</p>
+    <p>Rating: {props.rating}</p>
   </div>
 );
-
+ 
 export default Price;
