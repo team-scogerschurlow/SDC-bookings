@@ -51,17 +51,23 @@ function rentalsAvailabilityGenerator (rentals, x) {
     const refDate = Date.now();
     let contextCounter = 100;
     rentals.forEach((rental)=> {
-    
+        
        for (var i = 0; i < x; i++) {
+           let date = new Date(refDate + dayIncrement * i).toISOString().slice(0, 10);
+           date = '"' + date + '"';
            const tempObj = {
                id: contextCounter,
-               date: new Date(refDate + dayIncrement*i).toISOString().slice(0, 10),
+               rental_date: date,
                price: generatePrice(),
                available: generateAvailability(),
                views: generatePrice(),
                rental_id: rental.id
            }
            rentalsAvailability.push(tempObj);
+        //    if (i ===0) {
+        //        console.log(tempObj.rental_date);
+        //    }
+           
            contextCounter++;
        }
 
@@ -82,48 +88,48 @@ const connection = mysql.createConnection({
 // console.log(tenRentals);
 
 
-connection.connect((err)=>{
-    if (err) {
-        console.log(err);
-    }
-    console.log("Connected to MySQL DB");
-})
+// connection.connect((err)=>{
+//     if (err) {
+//         console.log(err);
+//     }
+//     console.log("Connected to MySQL DB");
+// })
 
-hundredRentals.forEach((rental)=>{
-    connection.query(
-        `INSERT INTO rental_price_info 
-        (id, guest_limit, service_fee, taxes, rating) 
-        VALUES 
-        (${rental.id}, ${rental.guest_limit}, ${rental.service_fee}, 
-        ${rental.taxes}, ${rental.rating});`
-    );
-})
+// hundredRentals.forEach((rental)=>{
+//     connection.query(
+//         `INSERT INTO rental_price_info 
+//         (id, guest_limit, service_fee, taxes, rating) 
+//         VALUES 
+//         (${rental.id}, ${rental.guest_limit}, ${rental.service_fee}, 
+//         ${rental.taxes}, ${rental.rating});`
+//     );
+// })
 
 
-thirtyDaysOfRentals.forEach((rentalDay) => {
-    connection.query(
-        `INSERT INTO 
-        rental_availability
-        (
-            id, 
-            date, 
-            price, 
-            available, 
-            views, 
-            rental_id
-        )
-        VALUES
-        (
-            ${rentalDay.id}, 
-            ${rentalDay.date}, 
-            ${rentalDay.price}, 
-            ${rentalDay.available}, 
-            ${rentalDay.views}, 
-            ${rentalDay.rental_id} 
-        );`
-    )
-})
+// thirtyDaysOfRentals.forEach((rentalDay) => {
+//     connection.query(
+//         `INSERT INTO 
+//         rental_availability
+//         (
+//             id, 
+//             rental_date, 
+//             price, 
+//             available, 
+//             views, 
+//             rental_id
+//         )
+//         VALUES
+//         (
+//             ${rentalDay.id}, 
+//             ${rentalDay.rental_date}, 
+//             ${rentalDay.price}, 
+//             ${rentalDay.available}, 
+//             ${rentalDay.views}, 
+//             ${rentalDay.rental_id} 
+//         );`
+//     )
+// })
 
-connection.end();
+// connection.end();
 
 

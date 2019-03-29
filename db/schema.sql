@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS rental_price_info (
 
 CREATE TABLE rental_availability (
     id  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    date VARCHAR(25) NOT NULL,
+    rental_date DATE NOT NULL,
     price INT NOT NULL DEFAULT 50,
     available INT NOT NULL DEFAULT 0,
     views INT NOT NULL DEFAULT 0,
