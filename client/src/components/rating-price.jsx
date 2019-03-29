@@ -6,7 +6,8 @@ const Price = props => {
   return <div>
     <p> ${props.data && props.data.price} a night</p>
     <Starratings 
-    rating = {props.rating}/>
+    rating = {props.rating}
+    starDimension = '20px'/>
     
   </div>
 }
