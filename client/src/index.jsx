@@ -36,19 +36,6 @@ class Booking extends React.Component {
                 currentRental: results.data[0]
             })
         })
-        // .then(() => {
-        //     // axios.get(`getavailabilitydata/${id}`)
-        //     //         .then((results)=> {
-        //     //             // this.setState({
-        //     //             //     availability: results.data
-        //     //             // })
-
-        //     //             console.log(results);
-        //     //         })
-        //     //         .catch((err)=>{
-        //     //             console.log(`error getting availability on client`, err);
-        //     //         })
-        // })
         .catch((err) => {
             console.log(`error on client getting rental data`, err);
         })

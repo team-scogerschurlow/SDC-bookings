@@ -21,7 +21,7 @@ function generatePrice () {
 }
 
 function generateAvailability () {
-    return Math.floor(Math.random()*1);
+    return Math.floor(Math.random()*2);
 }
 
 const dayIncrement = 86400000;
