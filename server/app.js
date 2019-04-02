@@ -6,7 +6,7 @@ const app = express();
 const PORT = 3000;
 
 app.use("/:id", express.static(__dirname + "/../client/public"));
-// app.use(express.static(__dirname+'/../client/public'));
+
 
 
 app.use(bodyParse.json());
