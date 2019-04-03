@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Price from './components/rating-price.jsx';
 import Guests from './components/guests.jsx';
+import Calendar from './components/calendar.jsx';
 
 class Booking extends React.Component {
     constructor() {
@@ -64,6 +65,8 @@ class Booking extends React.Component {
                     data={this.state.availability[0]} />
 
                 <Guests maxGuests = {this.state.currentRental.guest_limit} />
+
+                <Calendar />
             </div>
         );
     }
