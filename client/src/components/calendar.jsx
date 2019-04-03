@@ -9,25 +9,128 @@ class Calendar extends React.Component {
             refYear: new Date(Date.now()).getFullYear(),
             refMonth: new Date(Date.now()).getMonth(),
             startDate: "Check-In",
-            endDate: "Checkout"
+            endDate: "Checkout",
+            firstDateSelect: true
 
         }
         this.getDaysForCurrentMonth = this.getDaysForCurrentMonth.bind(
           this
         );
         this.toggleCalendar = this.toggleCalendar.bind(this);
+        this.selectDate = this.selectDate.bind(this);
     }
 
     toggleCalendar (e) {
         e.preventDefault();
-        this.setState({
-            showCalendar: true
-        })
+        if (this.state.showCalendar) {
+            this.setState({
+                showCalendar:false
+            })
+        } else {
+            this.setState({
+                showCalendar: true
+            })
+        }
+    }
+
+    isSecondDateLater (firstDate, secondDate) {
+        let secondIsLater = false;
+        const firstDateArr = firstDate.split('/');
+        const secondDateArr = secondDate.split('/');
+        if (
+          firstDateArr[0] < secondDateArr[0] ||
+          firstDateArr[1] < secondDateArr[1] ||
+          firstDateArr[2] < secondDateArr[2]
+        ) {
+          secondIsLater = true;
+        }
+
+        console.log(secondIsLater);
+
+        return secondIsLater;
+
+    }
+
+    selectDate (e) {
+        e.preventDefault();
+        console.log(e.target.innerHTML);
+        if (e.target.innerHTML === "") {
+
+        } else {
+            if (this.state.firstDateSelect) {
+                this.setState({
+                  startDate:
+                    e.target.innerHTML +
+                    "/" +
+                    this.state.refMonth +
+                    "/" +
+                    this.state.refYear,
+                  firstDateSelect: false,
+                  endDate: "Checkout"
+                });
+            } else {
+                let secondDate = e.target.innerHTML +
+                    "/" +
+                    this.state.refMonth +
+                    "/" +
+                    this.state.refYear;
+
+                if (this.isSecondDateLater(this.state.startDate, secondDate)) {
+                    this.setState({
+                        endDate: secondDate,
+                        firstDateSelect: true
+                    });
+
+                    }
+                
+
+            }
+            
+        }
+    }
+
+
+    parseMonthName () {
+        if (this.state.refMonth === 1) {
+            return 'January';
+        }
+        if (this.state.refMonth === 2) {
+          return "February";
+        }
+        if (this.state.refMonth === 3) {
+          return "March";
+        }
+        if (this.state.refMonth === 4) {
+          return "April";
+        }
+        if (this.state.refMonth === 5) {
+          return "May";
+        }
+        if (this.state.refMonth === 6) {
+          return "June";
+        }
+        if (this.state.refMonth === 7) {
+          return "July";
+        }
+        if (this.state.refMonth === 8) {
+          return "August";
+        }
+        if (this.state.refMonth === 9) {
+          return "September";
+        }
+        if (this.state.refMonth === 10) {
+          return "October";
+        }
+        if (this.state.refMonth === 11) {
+          return "November";
+        }
+        if (this.state.refMonth === 12) {
+          return "December";
+        }
 
     }
 
     
-
     getDaysForCurrentMonth () {
         const date = new Date(
           this.state.refYear + "-" + this.state.refMonth + "-" + "01"
@@ -63,58 +166,58 @@ class Calendar extends React.Component {
         return (
           <tbody>
             <tr className="week-one">
-              <td>{weekOneArray[0]}</td>
-              <td>{weekOneArray[1]}</td>
-              <td>{weekOneArray[2]}</td>
-              <td>{weekOneArray[3]}</td>
-              <td>{weekOneArray[4]}</td>
-              <td>{weekOneArray[5]}</td>
-              <td>{weekOneArray[6]}</td>
+              <td onClick={this.selectDate}>{weekOneArray[0]}</td>
+              <td onClick={this.selectDate}>{weekOneArray[1]}</td>
+              <td onClick={this.selectDate}>{weekOneArray[2]}</td>
+              <td onClick={this.selectDate}>{weekOneArray[3]}</td>
+              <td onClick={this.selectDate}>{weekOneArray[4]}</td>
+              <td onClick={this.selectDate}>{weekOneArray[5]}</td>
+              <td onClick={this.selectDate}>{weekOneArray[6]}</td>
             </tr>
             <tr className="week-two">
-              <td>{remainingDays[0]}</td>
-              <td>{remainingDays[1]}</td>
-              <td>{remainingDays[2]}</td>
-              <td>{remainingDays[3]}</td>
-              <td>{remainingDays[4]}</td>
-              <td>{remainingDays[5]}</td>
-              <td>{remainingDays[6]}</td>
+              <td onClick={this.selectDate}>{remainingDays[0]}</td>
+              <td onClick={this.selectDate}>{remainingDays[1]}</td>
+              <td onClick={this.selectDate}>{remainingDays[2]}</td>
+              <td onClick={this.selectDate}>{remainingDays[3]}</td>
+              <td onClick={this.selectDate}>{remainingDays[4]}</td>
+              <td onClick={this.selectDate}>{remainingDays[5]}</td>
+              <td onClick={this.selectDate}>{remainingDays[6]}</td>
             </tr>
              <tr className="week-three">
-              <td>{remainingDays[7]}</td>
-              <td>{remainingDays[8]}</td>
-              <td>{remainingDays[9]}</td>
-              <td>{remainingDays[10]}</td>
-              <td>{remainingDays[11]}</td>
-              <td>{remainingDays[12]}</td>
-              <td>{remainingDays[13]}</td>
+              <td onClick={this.selectDate}>{remainingDays[7]}</td>
+              <td onClick={this.selectDate}>{remainingDays[8]}</td>
+              <td onClick={this.selectDate}>{remainingDays[9]}</td>
+              <td onClick={this.selectDate}>{remainingDays[10]}</td>
+              <td onClick={this.selectDate}>{remainingDays[11]}</td>
+              <td onClick={this.selectDate}>{remainingDays[12]}</td>
+              <td onClick={this.selectDate}>{remainingDays[13]}</td>
             </tr>
              <tr className="week-four">
-              <td>{remainingDays[14]}</td>
-              <td>{remainingDays[15]}</td>
-              <td>{remainingDays[16]}</td>
-              <td>{remainingDays[17]}</td>
-              <td>{remainingDays[18]}</td>
-              <td>{remainingDays[19]}</td>
-              <td>{remainingDays[20]}</td>
+              <td onClick={this.selectDate}>{remainingDays[14]}</td>
+              <td onClick={this.selectDate}>{remainingDays[15]}</td>
+              <td onClick={this.selectDate}>{remainingDays[16]}</td>
+              <td onClick={this.selectDate}>{remainingDays[17]}</td>
+              <td onClick={this.selectDate}>{remainingDays[18]}</td>
+              <td onClick={this.selectDate}>{remainingDays[19]}</td>
+              <td onClick={this.selectDate}>{remainingDays[20]}</td>
             </tr>
              <tr className="week-five">
-              <td>{remainingDays[21]}</td>
-              <td>{remainingDays[22]}</td>
-              <td>{remainingDays[23]}</td>
-              <td>{remainingDays[24]}</td>
-              <td>{remainingDays[25]}</td>
-              <td>{remainingDays[26]}</td>
-              <td>{remainingDays[27]}</td>
+              <td onClick={this.selectDate}>{remainingDays[21]}</td>
+              <td onClick={this.selectDate}>{remainingDays[22]}</td>
+              <td onClick={this.selectDate}>{remainingDays[23]}</td>
+              <td onClick={this.selectDate}>{remainingDays[24]}</td>
+              <td onClick={this.selectDate}>{remainingDays[25]}</td>
+              <td onClick={this.selectDate}>{remainingDays[26]}</td>
+              <td onClick={this.selectDate}>{remainingDays[27]}</td>
             </tr>
               <tr className="week-five">
-              <td>{remainingDays[28]}</td>
-              <td>{remainingDays[29]}</td>
-              <td>{remainingDays[30]}</td>
-              <td>{remainingDays[31]}</td>
-              <td>{remainingDays[32]}</td>
-              <td>{remainingDays[33]}</td>
-              <td>{remainingDays[34]}</td>
+              <td onClick={this.selectDate}>{remainingDays[28]}</td>
+              <td onClick={this.selectDate}>{remainingDays[29]}</td>
+              <td onClick={this.selectDate}>{remainingDays[30]}</td>
+              <td onClick={this.selectDate}>{remainingDays[31]}</td>
+              <td onClick={this.selectDate}>{remainingDays[32]}</td>
+              <td onClick={this.selectDate}>{remainingDays[33]}</td>
+              <td onClick={this.selectDate}>{remainingDays[34]}</td>
             </tr>
           </tbody>
         );
@@ -131,8 +234,10 @@ class Calendar extends React.Component {
                     <table>
                         <thead>
                             <tr>
-                                <th>
-                                    {this.state.refMonth} {this.state.refYear}
+                                <th colSpan="7">
+                                    <button>-</button>
+                                    {this.parseMonthName()} {this.state.refYear}
+                                    <button>+</button>
                                 </th>
                             </tr>
                             <tr>
@@ -151,6 +256,8 @@ class Calendar extends React.Component {
                     </table>
 
         ) : null }
+
+        
             
           </div>
         );
