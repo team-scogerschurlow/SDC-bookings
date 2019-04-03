@@ -47,7 +47,6 @@ class Guests extends React.Component {
 
     increaseGuests (e) {
       e.preventDefault();
-       //need to compare to max
        if (e.target.name === 'numInfants') {
          this.setState({
            [e.target.name]: this.state[e.target.name] + 1
