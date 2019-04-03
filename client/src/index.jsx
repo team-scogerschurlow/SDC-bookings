@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from "axios";
 
 import Price from './components/rating-price.jsx';
+import Guests from './components/guests.jsx';
 
 class Booking extends React.Component {
     constructor() {
@@ -61,6 +62,8 @@ class Booking extends React.Component {
             <div>
                 <Price rating={this.state.currentRental.rating} 
                     data={this.state.availability[0]} />
+
+                <Guests maxGuests = {this.state.currentRental.guest_limit} />
             </div>
         );
     }
