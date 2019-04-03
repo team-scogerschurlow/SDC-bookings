@@ -9,13 +9,15 @@ class Guests extends React.Component {
             showDropdown: false,
             numGuests: 0,
             numChildren: 0,
-            numInfants: 0
+            numInfants: 0,
+            guests: 'guests'
         }
 
         this.displayDropdown = this.displayDropdown.bind(this);
         this.hideDropdown = this.hideDropdown.bind(this);
         this.decreaseGuests = this.decreaseGuests.bind(this);
         this.increaseGuests = this.increaseGuests.bind(this);
+        this.setGuestorGuests = this.setGuestorGuests.bind(this);
         
     }
 
@@ -40,24 +42,54 @@ class Guests extends React.Component {
           [e.target.name]: this.state[e.target.name] - 1
         })
       }
+
     }
 
     increaseGuests (e) {
       e.preventDefault();
        //need to compare to max
-       
-      this.setState({
-        [e.target.name]: this.state[e.target.name] + 1
-      })
+       if (e.target.name === 'numInfants') {
+         this.setState({
+           [e.target.name]: this.state[e.target.name] + 1
+         });
+       } else if ((this.state.numGuests + this.state.numChildren) < this.props.maxGuests) {
+        this.setState({
+          [e.target.name]: this.state[e.target.name] + 1
+        });
+      }
+
+      // if ((this.state.numGuests + this.state.numChildren) === 1) {
+      //   console.log('one')
+      //   this.setState({
+      //     guests: 'guest'
+      //   })
+      // }
+        
+    }
+
+    setGuestorGuests (e) {
+      e.preventDefault();
+
+       if ((this.state.numGuests + this.state.numChildren) === 1) {
+        console.log('one')
+        this.setState({
+          guests: 'guest'
+        })
+      } else {
+        this.setState({
+          guests: 'guests'
+        })
+      }
       
     }
+
 
 
     render () {
         return (
           <div>
             <button onClick={this.displayDropdown}>
-              Guests: {this.state.numGuests + this.state.numChildren + this.state.numInfants}
+              {this.state.numGuests + this.state.numChildren + this.state.numInfants} {this.state.guests}
             </button>
 
             {this.state.showDropdown ? (
@@ -70,7 +102,7 @@ class Guests extends React.Component {
                     >
                       -
                     </button>
-                    Guests {this.state.numGuests}
+                      Guests {this.state.numGuests}  
                     <button
                       name="numGuests"
                       onClick={this.increaseGuests}
@@ -85,7 +117,7 @@ class Guests extends React.Component {
                     >
                       -
                     </button>
-                    Children {this.state.numChildren}
+                      Children   {this.state.numChildren}
                     <button
                       name="numChildren"
                       onClick={this.increaseGuests}
@@ -100,13 +132,17 @@ class Guests extends React.Component {
                     >
                       -
                     </button>
-                    Infants {this.state.numInfants}
+                      Infants {this.state.numInfants}  
                     <button 
                     name="numInfants"
                     onClick={this.increaseGuests} 
                     >
                       +
                     </button>
+                  </li>
+                  <li>
+                    {this.props.maxGuests} guests maximum. Infants do not count towards the 
+                    maximum number of guests.
                   </li>
                 </ul>
                 <button onClick={this.hideDropdown}>Close</button>

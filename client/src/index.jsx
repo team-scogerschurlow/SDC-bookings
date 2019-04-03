@@ -63,7 +63,7 @@ class Booking extends React.Component {
                 <Price rating={this.state.currentRental.rating} 
                     data={this.state.availability[0]} />
 
-                <Guests />
+                <Guests maxGuests = {this.state.currentRental.guest_limit} />
             </div>
         );
     }
