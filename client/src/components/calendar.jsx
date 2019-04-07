@@ -224,6 +224,7 @@ class Calendar extends React.Component {
               <button onClick={this.toggleCalendar} >{this.state.startDate}</button>
                 <button onClick={this.toggleCalendar} >{this.state.endDate}</button>
         {this.state.showCalendar ? (
+          <div>
                     <table>
                         <thead>
                             <tr>
@@ -247,6 +248,8 @@ class Calendar extends React.Component {
                         {this.getDaysForCurrentMonth()}
 
                     </table>
+                    <button onClick={this.toggleCalendar}>Close</button>
+          </div>
 
         ) : null }
 
