@@ -5,9 +5,8 @@ class Calendar extends React.Component {
         super(props);
         this.state = {
             showCalendar: false,
-            refDate: Date.now(),
-            refYear: new Date(Date.now()).getFullYear(),
-            refMonth: new Date(Date.now()).getMonth(),
+            refYear: new Date().getFullYear(),
+            refMonth: new Date().getMonth(),
             startDate: "Check-In",
             endDate: "Checkout",
             firstDateSelect: true
@@ -20,11 +19,13 @@ class Calendar extends React.Component {
         this.selectDate = this.selectDate.bind(this);
     }
 
+   
+
     toggleCalendar (e) {
         e.preventDefault();
         if (this.state.showCalendar) {
             this.setState({
-                showCalendar:false
+              showCalendar:false
             })
         } else {
             this.setState({
@@ -34,18 +35,17 @@ class Calendar extends React.Component {
     }
 
     isSecondDateLater (firstDate, secondDate) {
+   
         let secondIsLater = false;
         const firstDateArr = firstDate.split('/');
         const secondDateArr = secondDate.split('/');
         if (
-          firstDateArr[0] < secondDateArr[0] ||
-          firstDateArr[1] < secondDateArr[1] ||
-          firstDateArr[2] < secondDateArr[2]
+          Number(firstDateArr[0]) <= Number(secondDateArr[0]) &&
+          Number(firstDateArr[1]) <= Number(secondDateArr[1]) &&
+          Number(firstDateArr[2]) <= Number(secondDateArr[2])
         ) {
           secondIsLater = true;
         }
-
-        console.log(secondIsLater);
 
         return secondIsLater;
 
@@ -53,25 +53,22 @@ class Calendar extends React.Component {
 
     selectDate (e) {
         e.preventDefault();
-        console.log(e.target.innerHTML);
-        if (e.target.innerHTML === "") {
-
-        } else {
+        if (e.target.innerHTML !== "") {
             if (this.state.firstDateSelect) {
                 this.setState({
                   startDate:
-                    e.target.innerHTML +
-                    "/" +
                     this.state.refMonth +
+                    "/" +
+                    e.target.innerHTML +
                     "/" +
                     this.state.refYear,
                   firstDateSelect: false,
                   endDate: "Checkout"
                 });
             } else {
-                let secondDate = e.target.innerHTML +
+              let secondDate = this.state.refMonth +
                     "/" +
-                    this.state.refMonth +
+                   e.target.innerHTML +
                     "/" +
                     this.state.refYear;
 
@@ -82,55 +79,51 @@ class Calendar extends React.Component {
                     });
 
                     }
-                
-
             }
             
         }
     }
 
-
     parseMonthName () {
-        if (this.state.refMonth === 1) {
+        if (this.state.refMonth === 0) {
             return 'January';
         }
-        if (this.state.refMonth === 2) {
+        if (this.state.refMonth === 1) {
           return "February";
         }
-        if (this.state.refMonth === 3) {
+        if (this.state.refMonth === 2) {
           return "March";
         }
-        if (this.state.refMonth === 4) {
+        if (this.state.refMonth === 3) {
           return "April";
         }
-        if (this.state.refMonth === 5) {
+        if (this.state.refMonth === 4) {
           return "May";
         }
-        if (this.state.refMonth === 6) {
+        if (this.state.refMonth === 5) {
           return "June";
         }
-        if (this.state.refMonth === 7) {
+        if (this.state.refMonth === 6) {
           return "July";
         }
-        if (this.state.refMonth === 8) {
+        if (this.state.refMonth === 7) {
           return "August";
         }
-        if (this.state.refMonth === 9) {
+        if (this.state.refMonth === 8) {
           return "September";
         }
-        if (this.state.refMonth === 10) {
+        if (this.state.refMonth === 9) {
           return "October";
         }
-        if (this.state.refMonth === 11) {
+        if (this.state.refMonth === 10) {
           return "November";
         }
-        if (this.state.refMonth === 12) {
+        if (this.state.refMonth === 11) {
           return "December";
         }
 
     }
 
-    
     getDaysForCurrentMonth () {
         const date = new Date(
           this.state.refYear + "-" + this.state.refMonth + "-" + "01"
