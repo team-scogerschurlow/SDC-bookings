@@ -7,8 +7,8 @@
     "react-compile": "webpack -d --watch",
     "server": "nodemon server/app.js",
     "seed": "node db/seed.js",
-    "tests" : "jest --watch",
-    "tests-coverage" : "jest --coverage --colors"
+    "tests": "jest --watch",
+    "tests-coverage": "jest --coverage --colors"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "babel-core": "^6.23.1",
     "babel-jest": "^24.7.1",
     "babel-loader": "^6.3.2",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "enzyme": "^3.9.0",

@@ -1,16 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ratingPrice from '../src/components/rating-price.jsx';
+import RatingPrice from './../src/components/rating-price.jsx';
 
 function setup() {
     const props = {
         data: {
             price: 217
         }
-        
     };
-    const wrapper = shallow(<ratingPrice />);
+    const wrapper = shallow( <RatingPrice />);
     return { wrapper, props };
 }
 
