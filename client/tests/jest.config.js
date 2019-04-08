@@ -1,6 +1,6 @@
 module.exports = {
     clearMocks: true,
-    collectCoverageFrom: ['src/**/*.{js,jsx}'],
+    collectCoverageFrom: ['./client/src/**/*.{js,jsx}'],
     coverageDirectory: 'coverage',
     moduleFileExtensions: ['js', 'json', 'jsx'],
     setupFiles: ['<rootDir>/enzyme.config.js'],
@@ -8,4 +8,4 @@ module.exports = {
     //testPathIgnorePatterns: ['\\\\node_modules\\\\'],
     transformIgnorePatterns: ['<rootDir>/node_modules/'],
     verbose: false,
-};
+}; 
