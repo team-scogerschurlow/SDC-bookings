@@ -1,13 +1,13 @@
 import React from "react";
-import Starratings from 'react-star-ratings';
+// import Starratings from 'react-star-ratings';
 
 
 const Price = props => {
   return <div>
     <p> ${props.data && props.data.price} a night</p>
-    <Starratings 
+    {/* <Starratings 
     rating = {props.rating}
-    starDimension = '20px'/>
+    starDimension = '20px'/> */}
     
   </div>
 }
