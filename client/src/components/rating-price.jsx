@@ -8,7 +8,7 @@ console.log(styles);
 
 const Price = props => {
   return <div className={styles.funky}>
-    <p> ${props.data && props.data.price} a night</p>
+    <p className={styles.test}> ${props.data && props.data.price} a night</p>
     <Starratings 
     rating = {props.rating}
     starDimension = '20px'/>
