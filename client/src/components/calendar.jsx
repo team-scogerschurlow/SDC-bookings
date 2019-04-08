@@ -34,11 +34,11 @@ class Calendar extends React.Component {
         }
     }
 
-    isSecondDateLater (firstDate, secondDate) {
+    isSecondDateLater (firstDate, secondDate, splitChar) {
    
         let secondIsLater = false;
-        const firstDateArr = firstDate.split('/');
-        const secondDateArr = secondDate.split('/');
+        const firstDateArr = firstDate.split(splitChar);
+        const secondDateArr = secondDate.split(splitChar);
         if (
           Number(firstDateArr[0]) <= Number(secondDateArr[0]) &&
           Number(firstDateArr[1]) <= Number(secondDateArr[1]) &&
@@ -72,7 +72,7 @@ class Calendar extends React.Component {
                     "/" +
                     this.state.refYear;
 
-                if (this.isSecondDateLater(this.state.startDate, secondDate)) {
+                if (this.isSecondDateLater(this.state.startDate, secondDate, '/')) {
                     this.setState({
                         endDate: secondDate,
                         firstDateSelect: true
@@ -159,24 +159,59 @@ class Calendar extends React.Component {
         return (
           <tbody>
             <tr className="week-one">
-              <td onClick={this.selectDate}>{weekOneArray[0]}</td>
-              <td onClick={this.selectDate}>{weekOneArray[1]}</td>
-              <td onClick={this.selectDate}>{weekOneArray[2]}</td>
-              <td onClick={this.selectDate}>{weekOneArray[3]}</td>
-              <td onClick={this.selectDate}>{weekOneArray[4]}</td>
-              <td onClick={this.selectDate}>{weekOneArray[5]}</td>
-              <td onClick={this.selectDate}>{weekOneArray[6]}</td>
+              <td
+                className={this.getClassForDay(weekOneArray[0])}
+                onClick={this.selectDate}
+              >
+                {weekOneArray[0]}
+              </td>
+              <td
+                className={this.getClassForDay(weekOneArray[1])}
+                onClick={this.selectDate}
+              >
+                {weekOneArray[1]}
+              </td>
+              <td
+                className={this.getClassForDay(weekOneArray[2])}
+                onClick={this.selectDate}
+              >
+                {weekOneArray[2]}
+              </td>
+              <td
+                className={this.getClassForDay(weekOneArray[3])}
+                onClick={this.selectDate}
+              >
+                {weekOneArray[3]}
+              </td>
+              <td
+                className={this.getClassForDay(weekOneArray[4])}
+                onClick={this.selectDate}
+              >
+                {weekOneArray[4]}
+              </td>
+              <td
+                className={this.getClassForDay(weekOneArray[5])}
+                onClick={this.selectDate}
+              >
+                {weekOneArray[5]}
+              </td>
+              <td
+                className={this.getClassForDay(weekOneArray[6])}
+                onClick={this.selectDate}
+              >
+                {weekOneArray[6]}
+              </td>
             </tr>
             <tr className="week-two">
-              <td onClick={this.selectDate}>{remainingDays[0]}</td>
-              <td onClick={this.selectDate}>{remainingDays[1]}</td>
-              <td onClick={this.selectDate}>{remainingDays[2]}</td>
-              <td onClick={this.selectDate}>{remainingDays[3]}</td>
-              <td onClick={this.selectDate}>{remainingDays[4]}</td>
-              <td onClick={this.selectDate}>{remainingDays[5]}</td>
-              <td onClick={this.selectDate}>{remainingDays[6]}</td>
+              <td className={this.getClassForDay(remainingDays[0])} onClick={this.selectDate}>{remainingDays[0]}</td>
+              <td className={this.getClassForDay(remainingDays[1])} onClick={this.selectDate}>{remainingDays[1]}</td>
+              <td className={this.getClassForDay(remainingDays[2])} onClick={this.selectDate}>{remainingDays[2]}</td>
+              <td className={this.getClassForDay(remainingDays[3])} onClick={this.selectDate}>{remainingDays[3]}</td>
+              <td className={this.getClassForDay(remainingDays[4])} onClick={this.selectDate}>{remainingDays[4]}</td>
+              <td className={this.getClassForDay(remainingDays[5])} onClick={this.selectDate}>{remainingDays[5]}</td>
+              <td className={this.getClassForDay(remainingDays[6])} onClick={this.selectDate}>{remainingDays[6]}</td>
             </tr>
-             <tr className="week-three">
+            <tr className="week-three">
               <td onClick={this.selectDate}>{remainingDays[7]}</td>
               <td onClick={this.selectDate}>{remainingDays[8]}</td>
               <td onClick={this.selectDate}>{remainingDays[9]}</td>
@@ -185,7 +220,7 @@ class Calendar extends React.Component {
               <td onClick={this.selectDate}>{remainingDays[12]}</td>
               <td onClick={this.selectDate}>{remainingDays[13]}</td>
             </tr>
-             <tr className="week-four">
+            <tr className="week-four">
               <td onClick={this.selectDate}>{remainingDays[14]}</td>
               <td onClick={this.selectDate}>{remainingDays[15]}</td>
               <td onClick={this.selectDate}>{remainingDays[16]}</td>
@@ -194,7 +229,7 @@ class Calendar extends React.Component {
               <td onClick={this.selectDate}>{remainingDays[19]}</td>
               <td onClick={this.selectDate}>{remainingDays[20]}</td>
             </tr>
-             <tr className="week-five">
+            <tr className="week-five">
               <td onClick={this.selectDate}>{remainingDays[21]}</td>
               <td onClick={this.selectDate}>{remainingDays[22]}</td>
               <td onClick={this.selectDate}>{remainingDays[23]}</td>
@@ -203,7 +238,7 @@ class Calendar extends React.Component {
               <td onClick={this.selectDate}>{remainingDays[26]}</td>
               <td onClick={this.selectDate}>{remainingDays[27]}</td>
             </tr>
-              <tr className="week-five">
+            <tr className="week-five">
               <td onClick={this.selectDate}>{remainingDays[28]}</td>
               <td onClick={this.selectDate}>{remainingDays[29]}</td>
               <td onClick={this.selectDate}>{remainingDays[30]}</td>
@@ -214,6 +249,36 @@ class Calendar extends React.Component {
             </tr>
           </tbody>
         );
+    }
+
+    getClassForDay (tdDate) {
+      const d = new Date();
+      const today = d.toISOString().split('T')[0];      
+      // for (let i = 0; i < this.props.dates.length; i++) {
+      //   if (this.props.dates[0].rental_date.split('T')[0]) {
+
+      //   }
+      // }
+      
+      if (tdDate === "") {
+        return "previous-month";
+      } else {
+        if (tdDate < 10) {
+          tdDate = "0" + tdDate.toString();
+        }
+        const refDateArr = today.split("-");
+        tdDate = refDateArr[0] + "-" + refDateArr[1] + "-" + tdDate;
+
+        if (this.isSecondDateLater(tdDate, today, '-')) {
+          return "past-date";
+        }
+        // console.log(
+        //   today,
+        //   this.props.dates[0].rental_date.split("T")[0],
+        //   tdDate
+        // );
+      }
+      
     }
 
 
