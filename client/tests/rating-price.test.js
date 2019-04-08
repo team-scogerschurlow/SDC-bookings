@@ -1,7 +1,7 @@
 const React = require('React');
 const shallow = require('enzyme');
 
-//const RatingPrice = require('./../src/components/rating-price');
+const RatingPrice = require('./../src/components/rating-price.jsx');
 
 // function setup() {
 //     const props = {
