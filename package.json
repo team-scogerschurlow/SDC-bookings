@@ -7,7 +7,7 @@
     "react-compile": "webpack -d --watch",
     "start": "nodemon server/app.js",
     "seed": "node db/seed.js",
-    "tests": "jest",
+    "test": "jest",
     "tests-coverage": "jest --coverage --colors"
   },
   "repository": {

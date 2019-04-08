@@ -1,7 +1,7 @@
-const React = require('React');
-const {shallow} = require('enzyme');
+import React from 'React';
+import {shallow} from 'enzyme';
 
-const RatingPrice = require('./../src/components/rating-price.jsx');
+import RatingPrice from './../src/components/rating-price.jsx';
 
 function setup() {
     const props = {
@@ -10,12 +10,13 @@ function setup() {
         }
     };
     const wrapper = shallow( <RatingPrice />);
-    return { wrapper, props };
+    return {wrapper, props};
 }
 
 describe('Rating-Price Test Suite', () => {
     it('should have a div', () => {
-        const { wrapper } = setup();
+        const {wrapper} = setup();
+        // const wrapper = shallow(<RatingPrice />)
         expect(wrapper.find('div').exists()).toBe(true);
     });
 });
