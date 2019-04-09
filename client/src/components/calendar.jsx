@@ -612,6 +612,7 @@ class Calendar extends React.Component {
     setDataForDayAvailability (tdDate) {
       const d = new Date();
       const today = d.toISOString().split('T')[0];
+     
       function helperForFindIndexToCompareDates(element) {
         return tdDate + 'T07:00:00.000Z' === element.rental_date;
       }
@@ -626,6 +627,11 @@ class Calendar extends React.Component {
         const indexOfDate = this.props.dates.findIndex(
             helperForFindIndexToCompareDates
         );
+
+        if (this.isSecondDateLater(tdDate, today, '-') && tdDate !== today) {
+          console.log(tdDate, today);
+          return "0";
+        } 
 
         if (indexOfDate !== -1) {
           const availabilityOfDate = this.props.dates[indexOfDate].available;
