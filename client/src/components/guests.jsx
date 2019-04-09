@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from "../css/style.css";
+
 
 class Guests extends React.Component {
     constructor (props) {
@@ -87,22 +89,30 @@ class Guests extends React.Component {
     render () {
         return (
           <div>
-            <button onClick={this.displayDropdown}>
-              {this.state.numGuests + this.state.numChildren + this.state.numInfants} {this.state.guests}
+            <button
+              className={styles["button-data-display"]}
+              onClick={this.displayDropdown}
+            >
+              {this.state.numGuests +
+                this.state.numChildren +
+                this.state.numInfants}{" "}
+              {this.state.guests}
             </button>
 
             {this.state.showDropdown ? (
               <div>
-                <ul>
+                <ul className={styles["list-no-styles"]}>
                   <li>
                     <button
+                      className={styles["button-action-styling"]}
                       name="numGuests"
                       onClick={this.decreaseGuests}
                     >
                       -
                     </button>
-                      Guests {this.state.numGuests}  
+                    Guests {this.state.numGuests}
                     <button
+                      className={styles["button-action-styling"]}
                       name="numGuests"
                       onClick={this.increaseGuests}
                     >
@@ -111,13 +121,15 @@ class Guests extends React.Component {
                   </li>
                   <li>
                     <button
+                      className={styles["button-action-styling"]}
                       name="numChildren"
                       onClick={this.decreaseGuests}
                     >
                       -
                     </button>
-                      Children   {this.state.numChildren}
+                    Children {this.state.numChildren}
                     <button
+                      className={styles["button-action-styling"]}
                       name="numChildren"
                       onClick={this.increaseGuests}
                     >
@@ -126,25 +138,32 @@ class Guests extends React.Component {
                   </li>
                   <li>
                     <button
+                      className={styles["button-action-styling"]}
                       name="numInfants"
                       onClick={this.decreaseGuests}
                     >
                       -
                     </button>
-                      Infants {this.state.numInfants}  
-                    <button 
-                    name="numInfants"
-                    onClick={this.increaseGuests} 
+                    Infants {this.state.numInfants}
+                    <button
+                      className={styles["button-action-styling"]}
+                      name="numInfants"
+                      onClick={this.increaseGuests}
                     >
                       +
                     </button>
                   </li>
                   <li>
-                    {this.props.maxGuests} guests maximum. Infants do not count towards the 
-                    maximum number of guests.
+                    {this.props.maxGuests} guests maximum. Infants do
+                    not count towards the maximum number of guests.
                   </li>
                 </ul>
-                <button onClick={this.hideDropdown}>Close</button>
+                <button
+                  className={styles["button-action-styling"]}
+                  onClick={this.hideDropdown}
+                >
+                  Close
+                </button>
               </div>
             ) : null}
           </div>
