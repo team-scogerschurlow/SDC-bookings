@@ -629,7 +629,6 @@ class Calendar extends React.Component {
         );
 
         if (this.isSecondDateLater(tdDate, today, '-') && tdDate !== today) {
-          console.log(tdDate, today);
           return "0";
         } 
 
