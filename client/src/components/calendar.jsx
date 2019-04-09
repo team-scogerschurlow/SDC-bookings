@@ -649,19 +649,19 @@ class Calendar extends React.Component {
 
     render () {
         return (
-          <div>
+          <div className = {styles['basic-font']}>
               <h4>Dates</h4>
-              <button onClick={this.toggleCalendar} >{this.state.startDate}</button>
-                <button onClick={this.toggleCalendar} >{this.state.endDate}</button>
+              <button className={styles['button-data-display']} onClick={this.toggleCalendar} >{this.state.startDate}</button>
+            <button className={styles['button-data-display']} onClick={this.toggleCalendar} >{this.state.endDate}</button>
         {this.state.showCalendar ? (
           <div>
                     <table>
                         <thead>
                             <tr>
                                 <th colSpan="7">
-                                    <button>-</button>
+                        <button className={styles["button-action-styling"]}>-</button>
                                     {this.parseMonthName()} {this.state.refYear}
-                                    <button>+</button>
+                        <button className={styles["button-action-styling"]}>+</button>
                                 </th>
                             </tr>
                             <tr>
@@ -678,7 +678,7 @@ class Calendar extends React.Component {
                         {this.getDaysForCurrentMonth()}
 
                     </table>
-                    <button onClick={this.toggleCalendar}>Close</button>
+                <button className={styles["button-action-styling"]} onClick={this.toggleCalendar}>Close</button>
           </div>
 
         ) : null }

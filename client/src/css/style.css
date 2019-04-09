@@ -1,3 +1,4 @@
+/*GENERAL MODULE STYLINGS*/
 .basic-font {
     font-family: 'Lato', sans-serif;
     font-size: 14px;
@@ -5,6 +6,27 @@
 
 .list-no-styles {
     list-style: none;
+}
+
+.button-action-styling{
+  background-color: rgb(68, 169, 216); 
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  
+}
+
+.button-data-display {
+  background-color: lightgrey; 
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+
 }
 
 
