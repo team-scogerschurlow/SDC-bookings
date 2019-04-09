@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from "../css/style.css";
+
 
 class Guests extends React.Component {
     constructor (props) {
@@ -88,12 +90,15 @@ class Guests extends React.Component {
         return (
           <div>
             <button onClick={this.displayDropdown}>
-              {this.state.numGuests + this.state.numChildren + this.state.numInfants} {this.state.guests}
+              {this.state.numGuests +
+                this.state.numChildren +
+                this.state.numInfants}{" "}
+              {this.state.guests}
             </button>
 
             {this.state.showDropdown ? (
               <div>
-                <ul>
+                <ul className={styles["list-no-styles"]}>
                   <li>
                     <button
                       name="numGuests"
@@ -101,7 +106,7 @@ class Guests extends React.Component {
                     >
                       -
                     </button>
-                      Guests {this.state.numGuests}  
+                    Guests {this.state.numGuests}
                     <button
                       name="numGuests"
                       onClick={this.increaseGuests}
@@ -116,7 +121,7 @@ class Guests extends React.Component {
                     >
                       -
                     </button>
-                      Children   {this.state.numChildren}
+                    Children {this.state.numChildren}
                     <button
                       name="numChildren"
                       onClick={this.increaseGuests}
@@ -131,17 +136,17 @@ class Guests extends React.Component {
                     >
                       -
                     </button>
-                      Infants {this.state.numInfants}  
-                    <button 
-                    name="numInfants"
-                    onClick={this.increaseGuests} 
+                    Infants {this.state.numInfants}
+                    <button
+                      name="numInfants"
+                      onClick={this.increaseGuests}
                     >
                       +
                     </button>
                   </li>
                   <li>
-                    {this.props.maxGuests} guests maximum. Infants do not count towards the 
-                    maximum number of guests.
+                    {this.props.maxGuests} guests maximum. Infants do
+                    not count towards the maximum number of guests.
                   </li>
                 </ul>
                 <button onClick={this.hideDropdown}>Close</button>
