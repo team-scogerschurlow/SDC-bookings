@@ -25,106 +25,106 @@ class Calendar extends React.Component {
    
 
     toggleCalendar (e) {
-        e.preventDefault();
-        if (this.state.showCalendar) {
-            this.setState({
-              showCalendar:false
-            })
-        } else {
-            this.setState({
-                showCalendar: true
-            })
-        }
+      e.preventDefault();
+      if (this.state.showCalendar) {
+          this.setState({
+            showCalendar:false
+          })
+      } else {
+          this.setState({
+              showCalendar: true
+          })
+      }
     }
 
     isSecondDateLater (firstDate, secondDate, splitChar) {
    
-        let secondIsLater = false;
-        const firstDateArr = firstDate.split(splitChar);
-        const secondDateArr = secondDate.split(splitChar);
-        if (
-          Number(firstDateArr[0]) <= Number(secondDateArr[0]) &&
-          Number(firstDateArr[1]) <= Number(secondDateArr[1]) &&
-          Number(firstDateArr[2]) <= Number(secondDateArr[2])
-        ) {
-          secondIsLater = true;
-        }
+      let secondIsLater = false;
+      const firstDateArr = firstDate.split(splitChar);
+      const secondDateArr = secondDate.split(splitChar);
+      if (
+        Number(firstDateArr[0]) <= Number(secondDateArr[0]) &&
+        Number(firstDateArr[1]) <= Number(secondDateArr[1]) &&
+        Number(firstDateArr[2]) <= Number(secondDateArr[2])
+      ) {
+        secondIsLater = true;
+      }
 
-        return secondIsLater;
+      return secondIsLater;
 
     }
 
     selectDate (e) {
-        e.preventDefault();
-        if (e.target.innerHTML !== "") {
-          if (this.state.firstDateSelect && e.target.getAttribute('data-availability') === '1' ) {
-              console.log(e.target.getAttribute('data-availability'));
-                this.setState({
-                  startDate:
-                    this.state.refMonth +
-                    "/" +
-                    e.target.innerHTML +
-                    "/" +
-                    this.state.refYear,
-                  firstDateSelect: false,
-                  endDate: "Checkout"
-                });
-          } else if (e.target.getAttribute('data-availability') === '1' ) {
-              let secondDate = this.state.refMonth +
-                    "/" +
-                   e.target.innerHTML +
-                    "/" +
-                    this.state.refYear;
+      e.preventDefault();
+      if (e.target.innerHTML !== "") {
+        if (this.state.firstDateSelect && e.target.getAttribute('data-availability') === '1' ) {
+            console.log(e.target.getAttribute('data-availability'));
+              this.setState({
+                startDate:
+                  this.state.refMonth +
+                  "/" +
+                  e.target.innerHTML +
+                  "/" +
+                  this.state.refYear,
+                firstDateSelect: false,
+                endDate: "Checkout"
+              });
+        } else if (e.target.getAttribute('data-availability') === '1' ) {
+            let secondDate = this.state.refMonth +
+                  "/" +
+                  e.target.innerHTML +
+                  "/" +
+                  this.state.refYear;
 
-            if (this.isSecondDateLater(this.state.startDate, secondDate, '/') && e.target.getAttribute('data-availability') === '1' ) {
-                    this.setState({
-                        endDate: secondDate,
-                        firstDateSelect: true
-                    });
+          if (this.isSecondDateLater(this.state.startDate, secondDate, '/') && e.target.getAttribute('data-availability') === '1' ) {
+                  this.setState({
+                      endDate: secondDate,
+                      firstDateSelect: true
+                  });
 
-                    }
-            }
-            
-        }
+                  }
+          }
+          
+      }
     }
 
     parseMonthName () {
-        if (this.state.refMonth === 0) {
-            return 'January';
-        }
-        if (this.state.refMonth === 1) {
-          return "February";
-        }
-        if (this.state.refMonth === 2) {
-          return "March";
-        }
-        if (this.state.refMonth === 3) {
-          return "April";
-        }
-        if (this.state.refMonth === 4) {
-          return "May";
-        }
-        if (this.state.refMonth === 5) {
-          return "June";
-        }
-        if (this.state.refMonth === 6) {
-          return "July";
-        }
-        if (this.state.refMonth === 7) {
-          return "August";
-        }
-        if (this.state.refMonth === 8) {
-          return "September";
-        }
-        if (this.state.refMonth === 9) {
-          return "October";
-        }
-        if (this.state.refMonth === 10) {
-          return "November";
-        }
-        if (this.state.refMonth === 11) {
-          return "December";
-        }
+      if (this.state.refMonth === 0) {
+          return 'January';
+      }
+      if (this.state.refMonth === 1) {
+        return "February";
+      }
+      if (this.state.refMonth === 2) {
+        return "March";
+      }
+      if (this.state.refMonth === 3) {
+        return "April";
+      }
+      if (this.state.refMonth === 4) {
+        return "May";
+      }
+      if (this.state.refMonth === 5) {
+        return "June";
+      }
+      if (this.state.refMonth === 6) {
+        return "July";
+      }
+      if (this.state.refMonth === 7) {
+        return "August";
+      }
+      if (this.state.refMonth === 8) {
+        return "September";
+      }
+      if (this.state.refMonth === 9) {
+        return "October";
+      }
+      if (this.state.refMonth === 10) {
+        return "November";
+      }
+      if (this.state.refMonth === 11) {
+        return "December";
+      }
 
     }
 
