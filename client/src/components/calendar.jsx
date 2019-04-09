@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from "../css/style.css";
+
 class Calendar extends React.Component {
     constructor (props) {
         super(props);
@@ -252,7 +254,6 @@ class Calendar extends React.Component {
     }
 
     getClassForDay (tdDate) {
-      //console.log(this.props.dates);
       const d = new Date();
       const today = d.toISOString().split('T')[0];      
       function helperForFindIndexToCompareDates (element) {
@@ -260,7 +261,7 @@ class Calendar extends React.Component {
       }
       
       if (tdDate === "") {
-        return "previous-month";
+        return styles["previous-month"];
       } else {
         if (tdDate < 10) {
           tdDate = "0" + tdDate.toString();
@@ -275,14 +276,14 @@ class Calendar extends React.Component {
           const todayAvailabilityOfDate = this.props.dates[todayIndexOfDate].available;
 
           if (todayAvailabilityOfDate === 0) {
-            return 'today-closed';
+            return styles["today-closed"];
           } else {
-            return 'today-open';
+            return styles['today-open'];
           }
         }
 
         if (this.isSecondDateLater(tdDate, today, '-')) {
-          return "past-date";
+          return styles["past-date"];
         } else {
          
           const indexOfDate = this.props.dates.findIndex(
@@ -294,9 +295,9 @@ class Calendar extends React.Component {
            const availabilityOfDate = this.props.dates[indexOfDate].available;
 
           if (availabilityOfDate === 0) {
-            return "closed";
+            return styles["closed"];
           } else {
-            return "open";
+            return styles["open"];
           }
           
         }

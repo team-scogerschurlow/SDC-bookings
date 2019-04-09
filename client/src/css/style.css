@@ -7,3 +7,34 @@
     list-style: none;
 }
 
+
+
+/*CALENDAR MODULE STYLINGS*/
+.previous-month{
+
+}
+
+.today-closed {
+    /* background: paleturquoise; */
+    color: lightgray;
+    text-decoration: line-through;
+}
+
+.today-open {
+    /* background: paleturquoise; */
+}
+
+.past-date {
+    color: lightgray;
+}
+
+.closed {
+    color: lightgray;
+    text-decoration: line-through;
+}
+
+.open {
+
+}
+
+
