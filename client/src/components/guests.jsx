@@ -106,6 +106,7 @@ class Guests extends React.Component {
                     <button
                       className={styles["button-action-styling"]}
                       name="numGuests"
+                      id='min-guest'
                       onClick={this.decreaseGuests}
                     >
                       -
@@ -132,6 +133,7 @@ class Guests extends React.Component {
                     <button
                       className={styles["button-action-styling"]}
                       name="numChildren"
+                      id="add-child"
                       onClick={this.increaseGuests}
                     >
                       +
@@ -149,6 +151,7 @@ class Guests extends React.Component {
                     <button
                       className={styles["button-action-styling"]}
                       name="numInfants"
+                      id="add-infant"
                       onClick={this.increaseGuests}
                     >
                       +
