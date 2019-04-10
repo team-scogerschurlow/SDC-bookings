@@ -1,7 +1,7 @@
 import React from 'React';
 import {shallow} from 'enzyme';
 
-import RatingPrice from './../src/components/rating-price.jsx';
+import RatingPrice from '../src/components/rating-price.jsx';
 
 function setup() {
     const props = {

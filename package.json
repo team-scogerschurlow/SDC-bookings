@@ -7,7 +7,7 @@
     "react-compile": "webpack -d --watch",
     "start": "nodemon server/app.js",
     "seed": "node db/seed.js",
-    "test": "jest",
+    "test": "jest --watch",
     "tests-coverage": "jest --coverage --colors"
   },
   "repository": {
@@ -28,7 +28,10 @@
     },
     "transformIgnorePatterns": [
       "!node_modules/react-runtime"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
+    }
   },
   "homepage": "https://github.com/ghrsea-bowsers-castle/rotto#readme",
   "devDependencies": {
@@ -43,6 +46,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "jest": "^24.7.1",
+    "jest-css-modules": "^2.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
