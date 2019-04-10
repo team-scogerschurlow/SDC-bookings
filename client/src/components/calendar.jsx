@@ -25,7 +25,7 @@ class Calendar extends React.Component {
    
 
     toggleCalendar (e) {
-      e.preventDefault();
+   
       if (this.state.showCalendar) {
           this.setState({
             showCalendar:false
@@ -55,7 +55,7 @@ class Calendar extends React.Component {
     }
 
     selectDate (e) {
-      e.preventDefault();
+
       if (e.target.innerHTML !== "") {
         if (this.state.firstDateSelect && e.target.getAttribute('data-availability') === '1' ) {
             console.log(e.target.getAttribute('data-availability'));
@@ -229,6 +229,7 @@ class Calendar extends React.Component {
             </tr>
             <tr className="week-two">
               <td
+                id='day-in-past'
                 className={this.getClassForDay(remainingDays[0])}
                 data-availability={this.setDataForDayAvailability(
                   remainingDays[0]
@@ -303,6 +304,7 @@ class Calendar extends React.Component {
                 {remainingDays[7]}
               </td>
               <td
+              id='unavailable'
                 className={this.getClassForDay(remainingDays[8])}
                 data-availability={this.setDataForDayAvailability(
                   remainingDays[8]
@@ -312,6 +314,7 @@ class Calendar extends React.Component {
                 {remainingDays[8]}
               </td>
               <td
+              id='available'
                 className={this.getClassForDay(remainingDays[9])}
                 data-availability={this.setDataForDayAvailability(
                   remainingDays[9]
@@ -576,13 +579,15 @@ class Calendar extends React.Component {
           const todayIndexOfDate = this.props.dates.findIndex(
             helperForFindIndexToCompareDates
           )
-          const todayAvailabilityOfDate = this.props.dates[todayIndexOfDate].available;
-
-          if (todayAvailabilityOfDate === 0) {
-            return styles["today-closed"];
-          } else {
-            return styles['today-open'];
-          }
+          if (todayIndexOfDate !== -1) {
+            const todayAvailabilityOfDate = this.props.dates[todayIndexOfDate].available;
+            if (todayAvailabilityOfDate === 0) {
+              return styles["today-closed"];
+            } else {
+              return styles['today-open'];
+            }
+          } 
+          
         }
 
         if (this.isSecondDateLater(tdDate, today, '-')) {
@@ -651,10 +656,10 @@ class Calendar extends React.Component {
         return (
           <div className = {styles['basic-font']}>
               <h4>Dates</h4>
-              <button className={styles['button-data-display']} onClick={this.toggleCalendar} >{this.state.startDate}</button>
+              <button className={styles['button-data-display']} id='show-cal' onClick={this.toggleCalendar} >{this.state.startDate}</button>
             <button className={styles['button-data-display']} onClick={this.toggleCalendar} >{this.state.endDate}</button>
         {this.state.showCalendar ? (
-          <div>
+          <div id='cal'>
                     <table>
                         <thead>
                             <tr>
@@ -678,7 +683,7 @@ class Calendar extends React.Component {
                         {this.getDaysForCurrentMonth()}
 
                     </table>
-                <button className={styles["button-action-styling"]} onClick={this.toggleCalendar}>Close</button>
+                <button id='btn-close' className={styles["button-action-styling"]} onClick={this.toggleCalendar}>Close</button>
           </div>
 
         ) : null }
