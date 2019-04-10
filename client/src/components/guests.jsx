@@ -24,21 +24,21 @@ class Guests extends React.Component {
     }
 
     displayDropdown (e) {
-        e.preventDefault();
+    
         this.setState({
             showDropdown: true
         })
     }
 
     hideDropdown (e) {
-        e.preventDefault();
+       
         this.setState({
             showDropdown: false
         });
     }
 
     decreaseGuests (e) {
-      e.preventDefault();
+  
       if (this.state[e.target.name] > 0) {
         this.setState({
           [e.target.name]: this.state[e.target.name] - 1
@@ -48,12 +48,12 @@ class Guests extends React.Component {
     }
 
     increaseGuests (e) {
-      e.preventDefault();
-       if (e.target.name === 'numInfants') {
-         this.setState({
-           [e.target.name]: this.state[e.target.name] + 1
-         });
-       } else if ((this.state.numGuests + this.state.numChildren) < this.props.maxGuests) {
+
+      if (e.target.name === 'numInfants') {
+        this.setState({
+          [e.target.name]: this.state[e.target.name] + 1
+        });
+      } else if ((this.state.numGuests + this.state.numChildren) < this.props.maxGuests) {
         this.setState({
           [e.target.name]: this.state[e.target.name] + 1
         });
@@ -69,7 +69,7 @@ class Guests extends React.Component {
     }
 
     setGuestorGuests (e) {
-      e.preventDefault();
+    
 
        if ((this.state.numGuests + this.state.numChildren) === 1) {
         console.log('one')
@@ -106,6 +106,7 @@ class Guests extends React.Component {
                     <button
                       className={styles["button-action-styling"]}
                       name="numGuests"
+                      id='min-guest'
                       onClick={this.decreaseGuests}
                     >
                       -
@@ -114,6 +115,7 @@ class Guests extends React.Component {
                     <button
                       className={styles["button-action-styling"]}
                       name="numGuests"
+                      id="add-guest"
                       onClick={this.increaseGuests}
                     >
                       +
@@ -131,6 +133,7 @@ class Guests extends React.Component {
                     <button
                       className={styles["button-action-styling"]}
                       name="numChildren"
+                      id="add-child"
                       onClick={this.increaseGuests}
                     >
                       +
@@ -148,6 +151,7 @@ class Guests extends React.Component {
                     <button
                       className={styles["button-action-styling"]}
                       name="numInfants"
+                      id="add-infant"
                       onClick={this.increaseGuests}
                     >
                       +
