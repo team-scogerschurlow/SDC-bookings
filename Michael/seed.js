@@ -13,14 +13,17 @@ const rental_price_infoSchema = new mongoose.Schema({
   rating: Number
 })
 
-const rental_price_info = mongoose.model('rental_price_info', rental_price_infoSchema)
+const rental_price_info = mongoose.model('rental_price_info', rental_price_infoSchema, 'rental_price_infoz')
 
 // module.exports = rental_price_info
 
 const insertRental_Price_Info = (x) => {
-  rental_price_info.create(script.multipleRentalPriceInfoGenerator(x))
+  rental_price_info.insertMany(script.multipleRentalPriceInfoGenerator(x), (err, res)=>{
+    if (err) console.log(err)
+    else {console.log(res)}
+  })
   // .then(()=> db.disconnect())
 }
 
-insertRental_Price_Info(100000)
+insertRental_Price_Info(1000000)
 
