@@ -10,7 +10,8 @@ const rental_price_infoSchema = new mongoose.Schema({
   guest_limit: Number,
   service_fee: Number,
   taxes: Number,
-  rating: Number
+  rating: Number,
+  rental_availability: Array
 })
 
 const rental_price_info = mongoose.model('rental_price_info', rental_price_infoSchema, 'rental_price_infoz')
@@ -25,5 +26,5 @@ const insertRental_Price_Info = (x) => {
   // .then(()=> db.disconnect())
 }
 
-insertRental_Price_Info(1000000)
+insertRental_Price_Info(100)
 
