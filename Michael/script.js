@@ -73,7 +73,7 @@ function rentalsAvailabilityGenerator (x) {
   const refDate = Date.now() 
      for (var i = 0; i < x; i++) {
          let date = new Date(refDate + dayIncrement * i).toISOString().slice(0, 10)
-         date = '"' + date + '"'
+         date = date
          const tempObj = {
              rental_date: date,
              price: generatePrice(),
@@ -85,6 +85,6 @@ function rentalsAvailabilityGenerator (x) {
   return rentalsAvailability
 } 
 
-console.log(rentalsAvailabilityGenerator(30))
-appendFileSync(__dirname + '/data.csv', `${multipleRentalPriceInfoGenerator(100)}`)
+// console.log(rentalsAvailabilityGenerator(30))
+// appendFileSync(__dirname + '/data.csv', `${multipleRentalPriceInfoGenerator(100)}`)
 module.exports = {multipleRentalPriceInfoGenerator}
