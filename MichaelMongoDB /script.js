@@ -86,5 +86,6 @@ function rentalsAvailabilityGenerator (x) {
 } 
 
 // console.log(rentalsAvailabilityGenerator(30))
+console.log(multipleRentalPriceInfoGenerator(1))
 // appendFileSync(__dirname + '/data.csv', `${multipleRentalPriceInfoGenerator(100)}`)
 module.exports = {multipleRentalPriceInfoGenerator}
